@@ -1,0 +1,49 @@
+[
+{
+  "condition":{"typeReachable":"org.apache.shardingsphere.sharding.algorithm.sharding.classbased.ClassBasedShardingAlgorithmFactory"},
+  "name":"io.github.linghengqian.commons.ClassBasedInlineShardingAlgorithmFixture",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "condition":{"typeReachable":"io.github.linghengqian.aservice.Order"},
+  "name":"io.github.linghengqian.aservice.Order",
+  "allDeclaredConstructors": true
+},
+{
+  "condition":{"typeReachable":"io.github.linghengqian.aservice.OrderItem"},
+  "name":"io.github.linghengqian.aservice.OrderItem",
+  "allDeclaredConstructors": true
+},
+{
+  "condition":{"typeReachable":"io.github.linghengqian.aservice.Address"},
+  "name":"io.github.linghengqian.aservice.Address",
+  "allDeclaredConstructors": true
+},
+{
+  "condition":{"typeReachable":"org.apache.shardingsphere.mode.repository.standalone.jdbc.sql.JDBCRepositorySQL"},
+  "name":"org.apache.shardingsphere.mode.repository.standalone.jdbc.sql.JDBCRepositorySQL",
+  "allDeclaredFields":true,
+  "queryAllDeclaredMethods":true,
+  "queryAllDeclaredConstructors":true
+},
+{
+  "condition":{"typeReachable":"org.apache.seata.core.serializer.SerializerServiceLoader"},
+  "name":"org.apache.seata.serializer.seata.SeataSerializer",
+  "allPublicConstructors": true
+},
+{
+  "condition":{"typeReachable":"org.apache.seata.common.loader.EnhancedServiceLoader"},
+  "name":"org.apache.seata.rm.datasource.exec.mysql.MySQLInsertExecutor",
+  "allPublicConstructors": true
+},
+{
+  "condition":{"typeReachable":"com.github.benmanes.caffeine.cache.LocalCacheFactory"},
+  "name":"com.github.benmanes.caffeine.cache.SIMSW",
+  "allDeclaredConstructors": true
+},
+{
+  "condition":{"typeReachable":"com.github.benmanes.caffeine.cache.LocalCacheFactory"},
+  "name":"com.github.benmanes.caffeine.cache.SIMS",
+  "allDeclaredConstructors": true
+}
+]

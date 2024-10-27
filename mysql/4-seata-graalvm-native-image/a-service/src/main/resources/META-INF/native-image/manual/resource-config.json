@@ -1,0 +1,17 @@
+{
+  "resources":{
+  "includes":[{
+    "condition":{"typeReachable":"io.github.linghengqian.aservice.AServiceApplication"},
+    "pattern":"\\Qdemo.yaml\\E"
+  }, {
+    "condition":{"typeReachable":"io.github.linghengqian.aservice.AServiceApplication"},
+    "pattern":"\\Qseata-script-client-conf-file.conf\\E"
+  }, {
+    "condition":{"typeReachable":"io.github.linghengqian.aservice.AServiceApplication"},
+    "pattern":"\\Qregistry.conf\\E"
+  }, {
+    "condition":{"typeReachable":"io.github.linghengqian.aservice.AServiceApplication"},
+    "pattern":"\\Qseata.conf\\E"
+  }]},
+  "bundles":[]
+}

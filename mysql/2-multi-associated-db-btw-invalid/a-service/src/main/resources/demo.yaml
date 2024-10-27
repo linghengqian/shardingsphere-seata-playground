@@ -1,0 +1,56 @@
+mode:
+  type: Standalone
+  repository:
+    type: JDBC
+dataSources:
+  ds_0:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://mysql-for-a-service:3306/demo_ds_0?allowPublicKeyRetrieval=true
+    username: root
+    password: example
+  ds_1:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://mysql-for-a-service:3306/demo_ds_1?allowPublicKeyRetrieval=true
+    username: root
+    password: example
+  ds_2:
+    dataSourceClassName: com.zaxxer.hikari.HikariDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    jdbcUrl: jdbc:mysql://mysql-for-a-service:3306/demo_ds_2?allowPublicKeyRetrieval=true
+    username: root
+    password: example
+rules:
+  - !SHARDING
+    tables:
+      t_order:
+        actualDataNodes: ds_$->{0..2}.t_order
+        keyGenerateStrategy:
+          column: order_id
+          keyGeneratorName: snowflake
+      t_order_item:
+        actualDataNodes: ds_$->{0..2}.t_order_item
+        keyGenerateStrategy:
+          column: order_item_id
+          keyGeneratorName: snowflake
+    defaultDatabaseStrategy:
+      standard:
+        shardingColumn: user_id
+        shardingAlgorithmName: inline
+    shardingAlgorithms:
+      inline:
+        type: INLINE
+        props:
+          algorithm-expression: ds_${user_id % 2}
+    keyGenerators:
+      snowflake:
+        type: SNOWFLAKE
+  - !BROADCAST
+    tables:
+      - t_address
+transaction:
+  defaultType: BASE
+  providerType: Seata
+props:
+  sql-show: false

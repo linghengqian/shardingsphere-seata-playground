@@ -1,0 +1,71 @@
+services:
+  apache-seata-server:
+    image: apache/seata-server:2.2.0
+    restart: always
+    environment:
+      TZ: Asia/Shanghai
+  mysql-for-a-service:
+    image: mysql:9.1.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      TZ: Asia/Shanghai
+    volumes:
+      - mysql-data-a:/var/lib/mysql
+      - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+  mysql-for-b-service:
+    image: mysql:9.1.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      TZ: Asia/Shanghai
+    volumes:
+      - mysql-data-b:/var/lib/mysql
+      - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "--silent"]
+  a-service:
+    image: linghengqian/a-service:latest
+    pull_policy: build
+    build:
+      context: ./a-service
+      dockerfile_inline: |
+        FROM eclipse-temurin:23
+        COPY ./ .
+        RUN ./mvnw clean package -DskipTests
+        RUN mv ./target/*.jar /app.jar
+        ENTRYPOINT [ "java", "-jar", "/app.jar" ]
+    volumes:
+      - ~/.m2:/root/.m2
+    depends_on:
+      apache-seata-server:
+        condition: service_started
+      mysql-for-a-service:
+        condition: service_healthy
+    environment:
+      TZ: Asia/Shanghai
+  b-service:
+    image: linghengqian/b-service:latest
+    pull_policy: build
+    build:
+      context: ./b-service
+      dockerfile_inline: |
+        FROM eclipse-temurin:23
+        COPY ./ .
+        RUN ./mvnw clean package -DskipTests
+        RUN mv ./target/*.jar /app.jar
+        ENTRYPOINT [ "java", "-jar", "/app.jar" ]
+    volumes:
+      - ~/.m2:/root/.m2
+    depends_on:
+      apache-seata-server:
+        condition: service_started
+      mysql-for-b-service:
+        condition: service_healthy
+    environment:
+      TZ: Asia/Shanghai
+volumes:
+  mysql-data-a:
+  mysql-data-b:

@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: a-service
+  datasource:
+    driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
+    url: jdbc:shardingsphere:classpath:demo.yaml
+server:
+  port: 15432
