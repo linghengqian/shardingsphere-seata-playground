@@ -10,16 +10,6 @@
   "allDeclaredConstructors": true
 },
 {
-  "condition":{"typeReachable":"io.github.linghengqian.aservice.OrderItem"},
-  "name":"io.github.linghengqian.aservice.OrderItem",
-  "allDeclaredConstructors": true
-},
-{
-  "condition":{"typeReachable":"io.github.linghengqian.aservice.Address"},
-  "name":"io.github.linghengqian.aservice.Address",
-  "allDeclaredConstructors": true
-},
-{
   "condition":{"typeReachable":"org.apache.shardingsphere.mode.repository.standalone.jdbc.sql.JDBCRepositorySQL"},
   "name":"org.apache.shardingsphere.mode.repository.standalone.jdbc.sql.JDBCRepositorySQL",
   "allDeclaredFields":true,

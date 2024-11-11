@@ -1,7 +1,3 @@
-mode:
-  type: Standalone
-  repository:
-    type: JDBC
 dataSources:
   ds_0:
     dataSourceClassName: com.zaxxer.hikari.HikariDataSource
@@ -29,11 +25,6 @@ rules:
         keyGenerateStrategy:
           column: order_id
           keyGeneratorName: snowflake
-      t_order_item:
-        actualDataNodes: <LITERAL>ds_0.t_order_item, ds_1.t_order_item, ds_2.t_order_item
-        keyGenerateStrategy:
-          column: order_item_id
-          keyGeneratorName: snowflake
     defaultDatabaseStrategy:
       standard:
         shardingColumn: user_id
@@ -47,11 +38,6 @@ rules:
     keyGenerators:
       snowflake:
         type: SNOWFLAKE
-  - !BROADCAST
-    tables:
-      - t_address
 transaction:
   defaultType: BASE
   providerType: Seata
-props:
-  sql-show: false
