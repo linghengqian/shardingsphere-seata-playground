@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-mysql -uroot -p"$MYSQL_ROOT_PASSWORD" "$MYSQL_DATABASE" <<EOSQL
+mysql -uroot -p"$MYSQL_ROOT_PASSWORD" <<EOSQL
 CREATE DATABASE demo_ds_0;
 CREATE DATABASE demo_ds_1;
 CREATE DATABASE demo_ds_2;
