@@ -146,7 +146,7 @@ class TestController {
             transactionTemplate.execute(new TransactionCallbackWithoutResult() {
                 @Override
                 protected void doInTransactionWithoutResult(@NonNull TransactionStatus status) {
-                    restClient.post().uri("http://a-service:15432/test_provider").retrieve().toBodilessEntity();
+                    restClient.post().uri("http://a-service:8080/test_provider").retrieve().toBodilessEntity();
                     jdbcClient.sql("INSERT INTO t_order (user_id, order_type, address_id, status) VALUES (114514, 0, 114514, 'INSERT_TEST')")
                             .update();
                     jdbcClient.sql("INSERT INTO t_order_does_not_exist (test_id_does_not_exist) VALUES (114514)")
