@@ -85,7 +85,6 @@ public class BServiceApplication {
 record Order(long orderId, int orderType, int userId, long addressId, String status) {
 }
 
-
 @SuppressWarnings({"SqlNoDataSourceInspection", "SqlDialectInspection"})
 @RestController
 class TestController {
