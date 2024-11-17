@@ -35,7 +35,7 @@ services:
         FROM ghcr.io/graalvm/native-image-community:22.0.2 AS nativebuild
         WORKDIR /build
         COPY ./ .
-        RUN ./mvnw -DskipTests=true clean native:compile -PnativeCustom
+        RUN ./mvnw -T 1C -DskipTests=true -PnativeCustom clean native:compile 
         
         FROM gcr.io/distroless/java-base-debian12:latest
         COPY --from=nativebuild /build/target/*.so /
@@ -59,7 +59,7 @@ services:
         FROM ghcr.io/graalvm/native-image-community:22.0.2 AS nativebuild
         WORKDIR /build
         COPY ./ .
-        RUN ./mvnw -DskipTests=true clean native:compile -PnativeCustom
+        RUN ./mvnw -T 1C -DskipTests=true -PnativeCustom clean native:compile 
         
         FROM gcr.io/distroless/java-base-debian12:latest
         COPY --from=nativebuild /build/target/*.so /
