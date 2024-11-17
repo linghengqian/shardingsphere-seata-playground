@@ -13,8 +13,8 @@
   "condition":{"typeReachable":"org.apache.shardingsphere.mode.repository.standalone.jdbc.sql.JDBCRepositorySQL"},
   "name":"org.apache.shardingsphere.mode.repository.standalone.jdbc.sql.JDBCRepositorySQL",
   "allDeclaredFields":true,
-  "queryAllDeclaredMethods":true,
-  "queryAllDeclaredConstructors":true
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true
 },
 {
   "condition":{"typeReachable":"org.apache.seata.core.serializer.SerializerServiceLoader"},
